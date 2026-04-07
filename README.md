@@ -21,48 +21,52 @@ A powerful, open-source **Model Context Protocol (MCP)** server specifically bui
 ## 📋 Prerequisites
 
 Before you begin, ensure you have the following installed:
-
 - **Node.js:** Version 18.0.0 or higher.
-- **Linear API Key:** A personal API key from your Linear workspace.
 - **Gemini CLI:** Installed and configured on your machine.
+- **Linear Account:** With access to generate an API key.
 
 ---
 
-## 🚀 Quick Start
+## 📖 Complete Gemini CLI Integration Guide
 
-### 1. Clone the Repository
-```bash
-git clone https://github.com/tenx-studio/Linear-MCP.git
-cd linear-mcp-open-source
-```
+This server is written in TypeScript. Because Gemini CLI requires a standard JavaScript executable to run MCP servers, we first need to download and "build" the project. 
 
-### 2. Install Dependencies
-```bash
-npm install
-```
+Follow these 4 steps to get everything connected.
 
-### 3. Configure Environment
-Create a `.env` file in the root directory by copying the example:
-```bash
-cp .env.example .env
-```
-Edit the `.env` file and add your Linear API key:
-```env
-LINEAR_API_KEY=lin_api_your_key_here
-```
+### Step 1: Download & Build the Server
 
-### 4. Build the Project
-```bash
-npm run build
-```
+1. **Clone the repository to your machine:**
+   ```bash
+   git clone https://github.com/tenx-studio/Linear-MCP.git
+   cd linear-mcp-open-source
+   ```
 
----
+2. **Install the required packages:**
+   ```bash
+   npm install
+   ```
 
-## 🛠️ Gemini CLI Integration
+3. **Compile the code:**
+   ```bash
+   npm run build
+   ```
+   *(Why do this? This command translates the TypeScript code into a `dist/index.js` file, which is the exact file Gemini CLI will use to communicate with Linear).*
 
-To integrate this server with **Gemini CLI**, you need to add it to your Gemini CLI `settings.json` file. This file is typically located at `~/.gemini/settings.json` (or `%USERPROFILE%\.gemini\settings.json` on Windows).
+### Step 2: Get your Linear API Key
 
-Add the following configuration to your `mcp` block:
+1. Navigate to **Settings > API > Personal API keys** in your Linear workspace.
+2. Click **New API key** and give it a descriptive name (e.g., "Gemini CLI").
+3. **Copy the key** (you will need it for the final step).
+
+### Step 3: Connect to Gemini CLI
+
+Now we tell Gemini CLI where to find the built server and securely provide it with your API key.
+
+1. Open your Gemini CLI settings file. You can usually find it at:
+   - **Windows:** `%USERPROFILE%\.gemini\settings.json` (e.g., `C:\Users\YourName\.gemini\settings.json`)
+   - **Mac/Linux:** `~/.gemini/settings.json`
+
+2. Add the `mcp` configuration block to the file so it looks like this:
 
 ```json
 {
@@ -70,27 +74,28 @@ Add the following configuration to your `mcp` block:
     "servers": {
       "linear": {
         "command": "node",
-        "args": ["D:/Gemini CLi/linear-mcp-open-source/dist/index.js"],
+        "args": ["/ABSOLUTE/PATH/TO/linear-mcp-open-source/dist/index.js"],
         "env": {
-          "LINEAR_API_KEY": "your_linear_api_key_here"
+          "LINEAR_API_KEY": "lin_api_your_key_here"
         }
       }
     }
   }
 }
 ```
-*Note: Ensure the `args` path points to the absolute path of the `dist/index.js` file on your system, and replace `your_linear_api_key_here` with your actual key.*
 
----
+⚠️ **Crucial Adjustments:**
+- **`args`**: You MUST replace `/ABSOLUTE/PATH/TO/...` with the actual, full path on your computer where you cloned this repository. (e.g., `"D:/Projects/linear-mcp-open-source/dist/index.js"`).
+- **`LINEAR_API_KEY`**: Replace `lin_api_your_key_here` with the exact API key you copied in Step 2.
 
-## 🔑 Getting Your Linear API Key
+### Step 4: Start Chatting!
 
-1. Navigate to **Settings > API > Personal API keys** in your Linear workspace.
-2. Click **New API key** and give it a descriptive name (e.g., "Gemini CLI MCP").
-3. **Copy the key immediately**—it will not be displayed again for security reasons.
+Close and reopen your terminal to restart your Gemini CLI session. The integration is now active! 
 
-> [!IMPORTANT]
-> Never share your API key or commit it to version control. The `.env` file is automatically ignored by Git to keep your credentials secure.
+Try asking Gemini CLI things like:
+> *"List my Linear teams."*
+> *"Find the issue about the login bug."*
+> *"Create a new high priority issue in the Engineering team to update the README."*
 
 ---
 

@@ -1,19 +1,19 @@
-# 🚀 Linear MCP Server
+# 🚀 Gemini Linear MCP
 
 [![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg)](https://opensource.org/licenses/ISC)
 [![Node.js Version](https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen.svg)](https://nodejs.org/)
 [![Model Context Protocol](https://img.shields.io/badge/MCP-Protocol-orange.svg)](https://modelcontextprotocol.io/)
 
-A powerful, open-source **Model Context Protocol (MCP)** server that bridges your favorite AI assistants (like Claude, Gemini, or Cursor) directly to your **Linear** workspace. Manage issues, teams, and workflows seamlessly through natural language.
+A powerful, open-source **Model Context Protocol (MCP)** server specifically built to bridge **Gemini CLI** directly to your **Linear** workspace. Manage issues, teams, and workflows seamlessly through natural language, right from your terminal.
 
 ---
 
 ## 🌟 Features
 
-- **🔍 Search & Discovery:** Find issues across your entire workspace with powerful search capabilities.
+- **🔍 Search & Discovery:** Find issues across your entire workspace directly from Gemini CLI.
 - **📝 Issue Management:** Fetch, create, and update issues (status, priority, assignee, etc.) effortlessly.
-- **💬 Collaboration:** Add comments to issues directly from your AI assistant's interface.
-- **🏢 Workspace Insights:** List teams, users, and workflow states to provide full context to your AI.
+- **💬 Collaboration:** Add comments to issues without leaving your terminal.
+- **🏢 Workspace Insights:** List teams, users, and workflow states to provide full context to Gemini.
 - **⚡ Real-time Integration:** Built on the Model Context Protocol for low-latency, secure communication.
 
 ---
@@ -24,6 +24,7 @@ Before you begin, ensure you have the following installed:
 
 - **Node.js:** Version 18.0.0 or higher.
 - **Linear API Key:** A personal API key from your Linear workspace.
+- **Gemini CLI:** Installed and configured on your machine.
 
 ---
 
@@ -57,37 +58,35 @@ npm run build
 
 ---
 
-## 🛠️ Usage
+## 🛠️ Gemini CLI Integration
 
-### Manual Start
-To run the server manually for testing or debugging:
-```bash
-npm start
-```
+To integrate this server with **Gemini CLI**, you need to add it to your Gemini CLI `settings.json` file. This file is typically located at `~/.gemini/settings.json` (or `%USERPROFILE%\.gemini\settings.json` on Windows).
 
-### MCP Client Configuration
-To use this server with an MCP-compatible client (e.g., Claude Desktop, Gemini CLI, or Cursor), add the following to your configuration file (e.g., `claude_desktop_config.json`):
+Add the following configuration to your `mcp` block:
 
 ```json
 {
-  "mcpServers": {
-    "linear": {
-      "command": "node",
-      "args": ["D:/Gemini CLi/linear-mcp-open-source/dist/index.js"],
-      "env": {
-        "LINEAR_API_KEY": "your_linear_api_key_here"
+  "mcp": {
+    "servers": {
+      "linear": {
+        "command": "node",
+        "args": ["D:/Gemini CLi/linear-mcp-open-source/dist/index.js"],
+        "env": {
+          "LINEAR_API_KEY": "your_linear_api_key_here"
+        }
       }
     }
   }
 }
 ```
+*Note: Ensure the `args` path points to the absolute path of the `dist/index.js` file on your system, and replace `your_linear_api_key_here` with your actual key.*
 
 ---
 
 ## 🔑 Getting Your Linear API Key
 
 1. Navigate to **Settings > API > Personal API keys** in your Linear workspace.
-2. Click **New API key** and give it a descriptive name (e.g., "Local MCP Server").
+2. Click **New API key** and give it a descriptive name (e.g., "Gemini CLI MCP").
 3. **Copy the key immediately**—it will not be displayed again for security reasons.
 
 > [!IMPORTANT]

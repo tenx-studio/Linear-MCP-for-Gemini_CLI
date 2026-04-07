@@ -1,16 +1,22 @@
 {
-  "name": "linear-custom-mcp",
+  "name": "gemini-linear-mcp",
   "version": "1.0.0",
-  "description": "",
+  "description": "An open-source Model Context Protocol (MCP) server specifically built to bridge Gemini CLI directly to your Linear workspace.",
   "main": "dist/index.js",
   "bin": {
-    "linear-custom-mcp": "./dist/index.js"
+    "gemini-linear-mcp": "./dist/index.js"
   },
   "scripts": {
     "build": "tsc",
     "start": "node dist/index.js"
   },
-  "keywords": [],
+  "keywords": [
+    "gemini",
+    "cli",
+    "mcp",
+    "linear",
+    "model-context-protocol"
+  ],
   "author": "",
   "license": "ISC",
   "type": "commonjs",

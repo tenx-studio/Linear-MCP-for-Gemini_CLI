@@ -1,75 +1,79 @@
-# Linear MCP Server
+# 🚀 Linear MCP Server
 
-This is an open-source [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) server for interacting with the [Linear API](https://linear.app/docs/api).
+[![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg)](https://opensource.org/licenses/ISC)
+[![Node.js Version](https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen.svg)](https://nodejs.org/)
+[![Model Context Protocol](https://img.shields.io/badge/MCP-Protocol-orange.svg)](https://modelcontextprotocol.io/)
 
-## Features
+A powerful, open-source **Model Context Protocol (MCP)** server that bridges your favorite AI assistants (like Claude, Gemini, or Cursor) directly to your **Linear** workspace. Manage issues, teams, and workflows seamlessly through natural language.
 
-- **Get Issues:** Fetch issues from a specific team.
-- **Search Issues:** Search for issues across the workspace.
-- **Create Issue:** Create new issues in a specific team.
-- **Update Issue:** Update issue details (status, priority, assignee, etc.).
-- **Add Comment:** Add comments to issues.
-- **List Teams, Users, and Workflow States.**
+---
 
-## Prerequisites
+## 🌟 Features
 
-- Node.js (v18 or higher)
-- A Linear API Key
+- **🔍 Search & Discovery:** Find issues across your entire workspace with powerful search capabilities.
+- **📝 Issue Management:** Fetch, create, and update issues (status, priority, assignee, etc.) effortlessly.
+- **💬 Collaboration:** Add comments to issues directly from your AI assistant's interface.
+- **🏢 Workspace Insights:** List teams, users, and workflow states to provide full context to your AI.
+- **⚡ Real-time Integration:** Built on the Model Context Protocol for low-latency, secure communication.
 
-## Getting Your Linear API Key (Keep it Private!)
+---
 
-1. Go to your Linear workspace settings: **Settings > API > Personal API keys**.
-2. Click **New API key** and give it a name (e.g., "MCP Server").
-3. **Copy the key immediately.** You will not be able to see it again.
+## 📋 Prerequisites
 
-**IMPORTANT:** Never commit your actual API key to version control. This project uses an environment variable (`LINEAR_API_KEY`) to keep your key secure.
+Before you begin, ensure you have the following installed:
 
-## Setup Instructions
+- **Node.js:** Version 18.0.0 or higher.
+- **Linear API Key:** A personal API key from your Linear workspace.
 
-1. **Clone the repository:**
-   ```bash
-   git clone <your-repo-url>
-   cd linear-mcp-open-source
-   ```
+---
 
-2. **Install dependencies:**
-   ```bash
-   npm install
-   ```
+## 🚀 Quick Start
 
-3. **Configure Environment Variables:**
-   - Copy the `.env.example` file to create a new `.env` file:
-     ```bash
-     cp .env.example .env
-     ```
-   - Open the `.env` file and replace `your_linear_api_key_here` with your actual Linear API key:
-     ```
-     LINEAR_API_KEY=lin_api_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-     ```
-   *Note: The `.env` file is included in `.gitignore`, so it will not be committed to Git.*
+### 1. Clone the Repository
+```bash
+git clone https://github.com/tenx-studio/Linear-MCP.git
+cd linear-mcp-open-source
+```
 
-4. **Build the project:**
-   ```bash
-   npm run build
-   ```
+### 2. Install Dependencies
+```bash
+npm install
+```
 
-## Usage
+### 3. Configure Environment
+Create a `.env` file in the root directory by copying the example:
+```bash
+cp .env.example .env
+```
+Edit the `.env` file and add your Linear API key:
+```env
+LINEAR_API_KEY=lin_api_your_key_here
+```
 
-You can start the server manually using:
+### 4. Build the Project
+```bash
+npm run build
+```
 
+---
+
+## 🛠️ Usage
+
+### Manual Start
+To run the server manually for testing or debugging:
 ```bash
 npm start
 ```
 
-Or configure your MCP client (like Gemini CLI, Claude Desktop, or Cursor) to spawn this server by pointing it to the compiled `dist/index.js` file and passing the `LINEAR_API_KEY` in the environment.
+### MCP Client Configuration
+To use this server with an MCP-compatible client (e.g., Claude Desktop, Gemini CLI, or Cursor), add the following to your configuration file (e.g., `claude_desktop_config.json`):
 
-### Example configuration for an MCP client:
 ```json
 {
   "mcpServers": {
     "linear": {
       "command": "node",
-      "args": ["/path/to/linear-mcp-open-source/dist/index.js"],
+      "args": ["D:/Gemini CLi/linear-mcp-open-source/dist/index.js"],
       "env": {
         "LINEAR_API_KEY": "your_linear_api_key_here"
       }
@@ -78,6 +82,35 @@ Or configure your MCP client (like Gemini CLI, Claude Desktop, or Cursor) to spa
 }
 ```
 
-## License
+---
 
-ISC
+## 🔑 Getting Your Linear API Key
+
+1. Navigate to **Settings > API > Personal API keys** in your Linear workspace.
+2. Click **New API key** and give it a descriptive name (e.g., "Local MCP Server").
+3. **Copy the key immediately**—it will not be displayed again for security reasons.
+
+> [!IMPORTANT]
+> Never share your API key or commit it to version control. The `.env` file is automatically ignored by Git to keep your credentials secure.
+
+---
+
+## 🤝 Contributing
+
+Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+---
+
+## 📄 License
+
+This project is licensed under the **ISC License**.
+
+---
+
+Built with ❤️ for the AI Developer Community.
